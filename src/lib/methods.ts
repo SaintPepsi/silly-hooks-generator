@@ -12,8 +12,10 @@ function getRandomElement(array) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-function getNextTextNode(currentNode) {
+function getNextTextNode(trackedNodes) {
+    const currentNode = trackedNodes[trackedNodes.length - 1];
     const nodePaths = NODE_TREE[currentNode];
+    // BACK CHECK FOR COMPLEX ROUTE
     const newNode = getRandomElement(nodePaths);
     const pathText = getRandomElement(allTextNodes[newNode]);
     return { text: pathText, newNode };
@@ -21,14 +23,14 @@ function getNextTextNode(currentNode) {
 
 function generateSentence(length) {
     const finalString = ["use"];
-    let currentTextNode = NODES.USE;
+    const trackedNodes = [NODES.USE];
     while (
         finalString.length < length ||
-        currentTextNode !== NODES.ADJECTIVE
+        trackedNodes[trackedNodes.length - 1] !== NODES.ADJECTIVE
     ) {
-        const { text, newNode } = getNextTextNode(currentTextNode);
+        const { text, newNode } = getNextTextNode(trackedNodes);
         finalString.push(text);
-        currentTextNode = newNode;
+        trackedNodes.push(newNode);
     }
     return finalString.join("");
 }
