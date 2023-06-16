@@ -36,6 +36,6 @@ function generateSentence(length) {
 export function useSillyHookGenerator() {
     // Generates a silly hook name!
     // const sillyHook = generateSentence(~~(Math.random() * 3));
-    const sillyHook = generateSentence(10);
+    const sillyHook = generateSentence(4);
     theSillyHook.set(sillyHook);
 }
