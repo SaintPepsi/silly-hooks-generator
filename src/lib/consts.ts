@@ -1,5 +1,7 @@
 import { writable } from "svelte/store";
-export const theSillyHook = writable("");
+
+// export const theSillyHook = writable("");
+export const theSillyHook = writable([[""], [""]]);
 
 export const NODES = {
     PREFIX: "PREFIX",
@@ -29,6 +31,32 @@ export const NODE_TREE = {
     [ADJECTIVE]: [NOUN, VERB],
     [VERB]: [ADJECTIVE, LINKING_WORD, NOUN],
     [LINKING_WORD]: [NOUN, ADJECTIVE],
+};
+
+export const PHRASE_RULES = [
+    (nodeList: string[]) => {
+        const currentNodeIndex = nodeList.length - 1;
+        if (
+            nodeList[currentNodeIndex] === LINKING_WORD &&
+            nodeList[currentNodeIndex - 1] === NOUN
+        ) {
+            return [ADJECTIVE];
+        }
+        return [];
+    },
+    (nodeList: string[]) => {
+        const currentNodeIndex = nodeList.length - 1;
+        if (nodeList[currentNodeIndex] === NOUN) {
+        }
+        return [];
+    },
+];
+
+export const PHRASE_RESTRICTIONS = {
+    [`${NOUN}${LINKING_WORD}`]: [ADJECTIVE],
+    [LINKING_WORD]: {
+        2: LINKING_WORD,
+    },
 };
 
 export const PREFIX_LIST = [
@@ -122,7 +150,11 @@ export const LINKING_WORD_LIST = [
     "therefore",
 ];
 
-export const allTextNodes = {
+type PossibleTextNodeList = {
+    [key: string]: string[];
+};
+
+export const allTextNodes: PossibleTextNodeList = {
     PREFIX: PREFIX_LIST,
     NOUN: NOUN_LIST,
     ADJECTIVE: ADJECTIVE_LIST,
