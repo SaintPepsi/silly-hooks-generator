@@ -14,24 +14,24 @@ export const NODES = {
 
 const { PREFIX, NOUN, ADJECTIVE, VERB, LINKING_WORD, USE } = NODES;
 
-// export const NODE_TREE = {
-//     [USE]: [ADJECTIVE, NOUN, PREFIX],
-//     [PREFIX]: [NOUN, VERB],
-//     [NOUN]: [LINKING_WORD, PREFIX],
-//     [ADJECTIVE]: [NOUN, PREFIX],
-//     [VERB]: [ADJECTIVE, LINKING_WORD, NOUN, PREFIX],
-//     [LINKING_WORD]: [NOUN, ADJECTIVE, PREFIX],
-// };
+export const NODE_TREE = {
+    [USE]: [ADJECTIVE, NOUN, PREFIX],
+    [PREFIX]: [NOUN, VERB],
+    [NOUN]: [LINKING_WORD, PREFIX],
+    [ADJECTIVE]: [NOUN, PREFIX],
+    [VERB]: [ADJECTIVE, LINKING_WORD, NOUN, PREFIX],
+    [LINKING_WORD]: [NOUN, ADJECTIVE, PREFIX],
+};
 
 // MORE COMPLEX CONDITIONING
-export const NODE_TREE = {
-    [USE]: [ADJECTIVE, NOUN],
-    [PREFIX]: [NOUN, VERB],
-    [NOUN]: [LINKING_WORD],
-    [ADJECTIVE]: [NOUN, VERB],
-    [VERB]: [ADJECTIVE, LINKING_WORD, NOUN],
-    [LINKING_WORD]: [NOUN, ADJECTIVE],
-};
+// export const NODE_TREE = {
+//     [USE]: [ADJECTIVE, NOUN],
+//     [PREFIX]: [NOUN, VERB],
+//     [NOUN]: [LINKING_WORD],
+//     [ADJECTIVE]: [NOUN, VERB],
+//     [VERB]: [ADJECTIVE, LINKING_WORD, NOUN],
+//     [LINKING_WORD]: [NOUN, ADJECTIVE],
+// };
 
 export const PHRASE_RULES = [
     (nodeList: string[]) => {
